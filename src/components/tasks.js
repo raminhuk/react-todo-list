@@ -1,7 +1,8 @@
 import React from 'react'
-import { HStack, VStack, IconButton, Button, Text, StackDivider, Spacer, Tag, TagLabel, TagRightIcon } from '@chakra-ui/react'
+import { HStack, Box, VStack, IconButton, Button, Text, StackDivider, Spacer, Tag, TagLabel, TagRightIcon } from '@chakra-ui/react'
 import { FiTrash2 } from 'react-icons/fi'
 import { BiTaskX } from 'react-icons/bi'
+import { Image } from '@chakra-ui/react'
 
 
 function TaskList({ tasks, deleteTask, deleteTaskAll }) {
@@ -9,10 +10,13 @@ function TaskList({ tasks, deleteTask, deleteTaskAll }) {
     if (!tasks.length) {
         return (
             <>
-            <Tag mt='20' p='5' variant='outline' colorScheme='gray'>
+            {/* <Tag mt='20' p='5' variant='outline' colorScheme='gray'>
                 <TagLabel>Sem Tarefas</TagLabel>
                 <TagRightIcon as={BiTaskX} />
-            </Tag>
+            </Tag> */}
+                <Box maxW='80%'>
+                    <Image mt='20' src='images/empty.png' alt='Sua lista está vazia :(' />
+                </Box>
             </>
         );
     }
@@ -27,7 +31,7 @@ function TaskList({ tasks, deleteTask, deleteTaskAll }) {
     p='4'
     borderRadius='lg'
     w='100%'
-    maxW={{ base: '90vw', sm: '80vw', lg: '50vw', xl: '40vw' }}
+    maxW={{ base: '90vw', sm: '80vw', lg: '50vw', xl: '30vw' }}
     alignItems='stretch'
     >
         {tasks.map((task) =>(
