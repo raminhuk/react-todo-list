@@ -8,11 +8,11 @@ function App() {
 
     const [tasks, setTasks] = useState(
         () => JSON.parse(localStorage.getItem('tasks')) || []
-      );
+    );
 
-      useEffect(() => {
+    useEffect(() => {
         localStorage.setItem('tasks', JSON.stringify(tasks));
-      }, [tasks]);
+    }, [tasks]);
 
     function deleteTask(id){
         const newTasks = tasks.filter((task) => {
@@ -23,6 +23,18 @@ function App() {
 
     function deleteTaskAll(){
         setTasks([]);
+    }
+
+    function checkTask(id){
+        
+        const newTasksCheck = tasks.map((task, index, array) => {
+            if (task.id === id){
+               task.check = !task.check;
+            }
+            return task;
+        });
+
+        setTasks(newTasksCheck);
     }
 
     function addTask(task){
@@ -52,7 +64,7 @@ function App() {
                 Lista de tarefas
             </Heading>
             <AddTask addTask={addTask} />
-            <TaskList tasks={tasks} deleteTask={deleteTask} deleteTaskAll={deleteTaskAll} />
+            <TaskList tasks={tasks} deleteTask={deleteTask} deleteTaskAll={deleteTaskAll} checkTask={checkTask}/>
         </VStack>
     );
 }
