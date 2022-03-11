@@ -21,6 +21,7 @@ function AddTask({ addTask }) {
         const task = {
             id: nanoid(),
             body: content,
+            check: false
         };
         
         addTask(task);

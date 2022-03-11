@@ -5,7 +5,7 @@ import { BiTaskX } from 'react-icons/bi'
 import { Image } from '@chakra-ui/react'
 
 
-function TaskList({ tasks, deleteTask, deleteTaskAll }) {
+function TaskList({ tasks, deleteTask, deleteTaskAll, checkTask }) {
 
     if (!tasks.length) {
         return (
@@ -20,7 +20,6 @@ function TaskList({ tasks, deleteTask, deleteTaskAll }) {
             </>
         );
     }
-
   return (
       <>
     <VStack
@@ -34,10 +33,22 @@ function TaskList({ tasks, deleteTask, deleteTaskAll }) {
     maxW={{ base: '90vw', sm: '80vw', lg: '50vw', xl: '30vw' }}
     alignItems='stretch'
     >
+        
         {tasks.map((task) =>(
-            <HStack key={task.id}>
-                <Text>{task.body}</Text>
-                <Spacer />
+            <HStack
+            key={task.id}
+            opacity={task.check == true ? '0.2' : '1'}
+            >
+                <Text
+                    w='100%' 
+                    p='8px'
+                    borderRadius='lg'
+                    as={task.check == true ? 's' : ''}
+                    cursor='pointer'
+                    // _hover={{ bg: 'gray.900' }}
+                    onClick={() => checkTask(task.id)}>
+                    {task.body}
+                </Text>
                 <IconButton
                     icon={<FiTrash2 />}
                     isRound='true'
