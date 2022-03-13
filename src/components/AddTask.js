@@ -4,23 +4,30 @@ import { nanoid } from 'nanoid';
 
 function AddTask({ addTask }) {
     const toast = useToast();
+    const [content, setContent] = useState('');
+    const [statusInput, setStatusInput] = useState(true);
 
     function handleSubmit(e){
         e.preventDefault();
 
-        if (!content) {
+        const taskText = content.trim();
+
+        if (!taskText) {
             toast({
-                title: 'Sem conteúdo',
+                title: 'Digite sua tarefa',
+                position: 'top',
                 status: 'warning',
                 duration: 2000,
                 isClosable: true,
             });
-            return;
+            setStatusInput(false);
+            
+            return setContent('');
         }
-        
+
         const task = {
             id: nanoid(),
-            body: content,
+            body: taskText,
             check: false
         };
         
@@ -28,13 +35,16 @@ function AddTask({ addTask }) {
         setContent('');
     }
 
-    const [content, setContent] = useState('');
+    if (content && !statusInput) {
+        setStatusInput(true);
+    }
 
     return (
         <form onSubmit={handleSubmit}>
             <HStack mt='4' mb='4'>
                 <Input
                     h='46'
+                    borderColor={!statusInput ? 'red.300' : 'transparent'}
                     variant='filled'
                     placeholder='Digite sua tarefa'
                     value={content}

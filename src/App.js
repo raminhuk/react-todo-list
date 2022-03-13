@@ -37,6 +37,10 @@ function App() {
         setTasks(newTasksCheck);
     }
 
+    function updateTask(){
+
+    }
+
     function addTask(task){
         setTasks([...tasks, task]);
     }

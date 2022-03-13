@@ -1,11 +1,11 @@
 import React from 'react'
-import { HStack, Box, VStack, IconButton, Button, Text, StackDivider, Spacer, Tag, TagLabel, TagRightIcon } from '@chakra-ui/react'
-import { FiTrash2 } from 'react-icons/fi'
+import { HStack, Box, VStack, IconButton, Flex, Button, Text, StackDivider, Spacer, Tag, TagLabel, TagRightIcon } from '@chakra-ui/react'
+import { FiTrash2, FiEdit } from 'react-icons/fi'
 import { BiTaskX } from 'react-icons/bi'
 import { Image } from '@chakra-ui/react'
 
 
-function TaskList({ tasks, deleteTask, deleteTaskAll, checkTask }) {
+function TaskList({ tasks, deleteTask, deleteTaskAll, checkTask, UpdateTask }) {
 
     if (!tasks.length) {
         return (
@@ -26,8 +26,7 @@ function TaskList({ tasks, deleteTask, deleteTaskAll, checkTask }) {
     divider={<StackDivider />}
     borderColor='gray.100'
     borderWidth='2px'
-    mb='10'
-    p='4'
+    p='5'
     borderRadius='lg'
     w='100%'
     maxW={{ base: '90vw', sm: '80vw', lg: '50vw', xl: '30vw' }}
@@ -54,21 +53,28 @@ function TaskList({ tasks, deleteTask, deleteTaskAll, checkTask }) {
                     isRound='true'
                     onClick={() => deleteTask(task.id)}
                 />
-
+                <IconButton
+                    icon={<FiEdit />}
+                    isRound='true'
+                    onClick={() => UpdateTask(task.id)}
+                />
+                
             </HStack>
         ))}
         
     </VStack>
-    <Button
-        colorScheme='gray'
-        px='8'
-        h='45'
-        color='gray.500'
-        mt='10'
-        onClick={() => deleteTaskAll()}
-        >
-        Excluir Todos
+    <Flex>
+        <Button
+            colorScheme='gray'
+            px='8'
+            h='45'
+            color='gray.500'
+            mt='8'
+            onClick={() => deleteTaskAll()}
+            >
+            Excluir Todos
         </Button>
+    </Flex>
     </>
   );
 }
