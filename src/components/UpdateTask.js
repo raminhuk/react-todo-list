@@ -36,7 +36,7 @@ function UpdateTask({ task, updateTask }) {
             onClose={onClose}
           >
             <ModalOverlay />
-            <ModalContent maxW='90%'>
+            <ModalContent w='90%'>
               <ModalHeader>Atualize sua tarefa </ModalHeader>
               <ModalCloseButton />
               <ModalBody pb={6}>
