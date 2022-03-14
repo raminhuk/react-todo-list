@@ -1,4 +1,4 @@
-import { Heading, IconButton, VStack, useColorMode } from "@chakra-ui/react";
+import { Heading, IconButton, VStack, useColorMode, useDisclosure } from "@chakra-ui/react";
 import TaskList from './components/tasks';
 import AddTask from './components/AddTask';
 import { FaSun, FaMoon } from 'react-icons/fa'
@@ -37,8 +37,19 @@ function App() {
         setTasks(newTasksCheck);
     }
 
-    function updateTask(){
+    function updateTask(id, body, onClose){
 
+        const newTasksUpdate = tasks.map((task, index, array) => {
+            if (task.id === id){
+               task.body = body;
+               task.check = false
+            }
+            return task;
+        });
+
+        setTasks(newTasksUpdate);
+
+        onClose();
     }
 
     function addTask(task){
@@ -68,7 +79,7 @@ function App() {
                 Lista de tarefas
             </Heading>
             <AddTask addTask={addTask} />
-            <TaskList tasks={tasks} deleteTask={deleteTask} deleteTaskAll={deleteTaskAll} checkTask={checkTask}/>
+            <TaskList tasks={tasks} updateTask={updateTask} deleteTask={deleteTask} deleteTaskAll={deleteTaskAll} checkTask={checkTask}/>
         </VStack>
     );
 }
