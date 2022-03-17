@@ -1,4 +1,4 @@
-import { Heading, IconButton, VStack, useColorMode, useDisclosure } from "@chakra-ui/react";
+import { Heading, IconButton, VStack, useColorMode, useDisclosure, useToast } from "@chakra-ui/react";
 import TaskList from './components/tasks';
 import AddTask from './components/AddTask';
 import { FaSun, FaMoon } from 'react-icons/fa'
@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 
 function App() {
 
+    const toast = useToast();
     const [tasks, setTasks] = useState(
         () => JSON.parse(localStorage.getItem('tasks')) || []
     );
@@ -38,6 +39,20 @@ function App() {
     }
 
     function updateTask(id, body, onClose){
+
+        const info = body.trim();
+
+        if (!info) {
+            toast({
+                title: 'Digite sua tarefa',
+                position: 'top',
+                status: 'warning',
+                duration: 2000,
+                isClosable: true,
+            });
+            
+            return;
+        }
 
         const newTasksUpdate = tasks.map((task, index, array) => {
             if (task.id === id){
