@@ -78,14 +78,13 @@ function App() {
             <IconButton 
                 icon={colorMode === 'light' ? <FaSun /> : <FaMoon />}
                 isRound='true'
-                size='lg'
+                size='md'
                 alignSelf='flex-end'
                 onClick={toggleColorMode}
             />
 
             <Heading
                 p='5'
-                mt='5'
                 fontWeight='extrabold'
                 size='xl'
                 bgGradient='linear(to-l, teal.300, blue.500)'
