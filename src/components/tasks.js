@@ -1,8 +1,7 @@
 import React from 'react'
 import UpdateTask from './UpdateTask';
-import { HStack, Box, VStack, IconButton, Flex, Button, Text, StackDivider, Spacer, Tag, TagLabel, TagRightIcon } from '@chakra-ui/react'
-import { FiTrash2, FiEdit } from 'react-icons/fi'
-import { BiTaskX } from 'react-icons/bi'
+import { DeleteTask, DeleteAllTask } from './DeleteTask';
+import { HStack, Box, VStack, IconButton, Flex, Button, Text, StackDivider } from '@chakra-ui/react'
 import { Image } from '@chakra-ui/react'
 
 
@@ -16,7 +15,7 @@ function TaskList({ tasks, updateTask, deleteTask, deleteTaskAll, checkTask }) {
                 <TagRightIcon as={BiTaskX} />
             </Tag> */}
                 <Box maxW='80%'>
-                    <Image mt='20' src='images/empty.png' alt='Sua lista está vazia :(' />
+                    <Image mt={{ base: '26', sm: '10' }} src='images/empty.png' alt='Sua lista está vazia :(' />
                 </Box>
             </>
         );
@@ -48,27 +47,14 @@ function TaskList({ tasks, updateTask, deleteTask, deleteTaskAll, checkTask }) {
                         onClick={() => checkTask(task.id)}>
                         {task.body}
                     </Text>
-                    <IconButton
-                        icon={<FiTrash2 />}
-                        isRound='true'
-                        onClick={() => deleteTask(task.id)}
-                    />
+                    <DeleteTask task={task} deleteTask={deleteTask} deleteTaskAll={deleteTaskAll} />
                     <UpdateTask task={task} updateTask={updateTask} />
                 </HStack>
             ))}    
         </VStack>
 
         <Flex>
-            <Button
-                colorScheme='gray'
-                px='8'
-                h='45'
-                color='gray.500'
-                mt='8'
-                onClick={() => deleteTaskAll()}
-                >
-                Excluir Todos
-            </Button>
+            <DeleteAllTask deleteTaskAll={deleteTaskAll} />
         </Flex>
     </>
   );
