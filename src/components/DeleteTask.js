@@ -36,9 +36,8 @@ import {
             <ModalOverlay />
             <ModalContent w='90%'>
                 <ModalHeader>
-                    Você realmente deseja excluir a todas as tarefa?
+                    Você realmente deseja excluir todas as tarefas?
                 </ModalHeader>
-                <ModalCloseButton />
                 <ModalFooter>
                 <Button mr={3} onClick={onClose}>Não</Button>
                 <Button colorScheme='blue' onClick={() => deleteTaskAll()}>
@@ -66,11 +65,10 @@ import {
           <ModalOverlay />
           <ModalContent w='90%'>
             <ModalHeader>
-                Você realmente deseja excluir a tarefa:
+                Você realmente deseja excluir a tarefa?
             </ModalHeader>
-            <ModalCloseButton />
             <ModalBody>
-                <Text>{task.body} ?</Text>
+                <Text>{task.body}</Text>
             </ModalBody>
             <ModalFooter>
               <Button mr={3} onClick={onClose}>Não</Button>
