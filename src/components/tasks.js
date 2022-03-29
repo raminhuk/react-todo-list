@@ -3,6 +3,7 @@ import UpdateTask from './UpdateTask';
 import { DeleteTask, DeleteAllTask } from './DeleteTask';
 import { HStack, Box, VStack, IconButton, Flex, Button, Text, StackDivider } from '@chakra-ui/react'
 import { Image } from '@chakra-ui/react'
+import img from '../images/empty.svg'
 
 
 function TaskList({ tasks, updateTask, deleteTask, deleteTaskAll, checkTask }) {
@@ -15,7 +16,7 @@ function TaskList({ tasks, updateTask, deleteTask, deleteTaskAll, checkTask }) {
                 <TagRightIcon as={BiTaskX} />
             </Tag> */}
                 <Box maxW='80%'>
-                    <Image mt={{ base: '26', sm: '10' }} src='images/empty.png' alt='Sua lista está vazia :(' />
+                    <Image mt='20px' w='98%' maxW='350' src={img} alt='Sua lista está vazia :(' />
                 </Box>
             </>
         );
